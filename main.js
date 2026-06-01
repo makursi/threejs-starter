@@ -7,7 +7,10 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000,
 ); // 创建摄像机
+// 定义坐标轴辅助器
 
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
 const renderer = new THREE.WebGLRenderer(); // 创建渲染器
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -15,13 +18,16 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // 材质
 
 const cube = new THREE.Mesh(geometry, material); // 立方体
+cube.scale.set(2, 1, 1);
+cube.position.set(2, 1, 1);
+cube.rotation.set(Math.PI / 2, 0.5, 0.5);
 scene.add(cube);
-camera.position.z = 5;
 
-//  制作动画
-function animate(time) {
-  cube.rotation.x = time / 2000;
-  cube.rotation.y = time / 1000;
+// 调整相机的位置
+camera.position.set(2, 2, 5);
+//添加渲染动画循环
+function animate() {
+  requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
-renderer.setAnimationLoop(animate);
+animate();
