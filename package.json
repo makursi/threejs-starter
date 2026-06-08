@@ -1,21 +1,40 @@
 {
   "name": "three.js-start",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^9.0.0",
+    "@eslint-react/eslint-plugin": "^5.6.0",
+    "@types/three": "^0.184.1",
+    "@unocss/eslint-plugin": "^66.6.8",
+    "eslint": "^10.3.0",
+    "eslint-plugin-format": "^2.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "lint-staged": "^17.0.7",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^6.0.3",
     "vite": "^8.0.14"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "pre-push": "pnpm run lint:fix"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
